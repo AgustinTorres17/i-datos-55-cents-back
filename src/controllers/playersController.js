@@ -5,7 +5,7 @@ const getPlayerById = async (req, res) => {
     const id = req.params.id;
     const query = `SELECT * FROM players WHERE id = ${id}`;
     const result = await pool.query(query);
-    res.status(200).json(result.rows);
+    res.status(200).json(result.rows[0]);
   } catch (err) {
     console.error("Error obteniendo los jugadores:", err);
     res.status(500).json({ message: "Error al obtener los jugadores" });
@@ -17,7 +17,7 @@ const getPlayerStatsById = async (req, res) => {
     const id = req.params.id;
     const query = `SELECT * FROM players_stats WHERE id_player = ${id}`;
     const result = await pool.query(query);
-    res.status(200).json(result.rows);
+    res.status(200).json(result.rows[0]);
   } catch (err) {
     console.error("Error obteniendo las estadísticas del jugador:", err);
     res
