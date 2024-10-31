@@ -103,7 +103,6 @@ const getPlayersStatsById = async (req, res) => {
     const season = req.params.season;
     const query = `SELECT * FROM players_stats as ps JOIN teams as ts ON ps.team = ts.abreviation JOIN players p ON ps.id_player = p.id WHERE ts.id = $1 AND ps.season = $2`;
     const result = await pool.query(query, [id, season.toString()]);
-    console.log(result.rows);
     res.status(200).json(result.rows);
   } catch (err) {
     console.error("Error obteniendo los jugadores del equipo:", err);
